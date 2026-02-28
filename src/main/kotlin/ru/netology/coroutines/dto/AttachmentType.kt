@@ -1,5 +1,5 @@
 package ru.netology.coroutines.dto
 
 enum class AttachmentType {
-    IMAGE
+    IMAGE, VIDEO, AUDIO, DOCUMENT
 }
