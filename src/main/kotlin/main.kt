@@ -60,15 +60,15 @@ suspend fun getComments(client: OkHttpClient, id: Long): List<Comment> =
 
 fun createAuthorFromPost(post: Post): Author = Author(
     id = post.id,  // Используем ID поста как временный ID автора
-    name = post.author,
-    avatar = post.authorAvatar
+    name = post.authorId,
+    avatar = post.content
 )
 
 
 fun createAuthorFromComment(comment: Comment): Author = Author(
     id = comment.id,  // Используем ID комментария как временный ID автора
-    name = comment.author,
-    avatar = comment.authorAvatar
+    name = comment.authorId,
+    avatar = comment.content
 )
 
 
@@ -79,7 +79,7 @@ suspend fun loadPostsWithAuthors(client: OkHttpClient): List<PostWithCommentsAnd
 
     posts.map { post ->
         async {
-            println("  📦 Обработка поста #${post.id} от '${post.author}'")
+            println("  📦 Обработка поста #${post.id} от '${post.content}'")
 
             // Создаем автора из данных поста
             val postAuthor = createAuthorFromPost(post)
